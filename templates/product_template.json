@@ -1,0 +1,10 @@
+{
+    "name": "{name}",
+    "concentration": "{concentration}",
+    "skin_type": "{skin_type}",
+    "ingredients": "{ingredients}",
+    "benefits": "{benefits}",
+    "usage": "{usage}",
+    "side_effects": "{side_effects}",
+    "price": "{price}"
+}
