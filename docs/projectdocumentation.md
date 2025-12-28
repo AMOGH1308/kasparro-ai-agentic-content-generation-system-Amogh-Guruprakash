@@ -1,26 +1,3 @@
-Here is the **FULL and FINAL `projectdocumentation.md`** — complete, polished, and ready to upload to GitHub as-is.
-
-This version includes:
-
-✔ Full problem statement
-✔ Complete explanation of the entire system
-✔ File-by-file documentation
-✔ Mermaid architecture diagram
-✔ Mermaid sequence diagram
-✔ Professional formatting
-✔ Perfect for Kasparro interview evaluation
-
-Just copy this entire block into:
-
-```
-docs/projectdocumentation.md
-```
-
----
-
-# 📘 **projectdocumentation.md (FINAL VERSION)**
-
-````markdown
 # Kasparro – Multi-Agent Content Generation System  
 ### Project Documentation  
 Author: **Amogh G**
@@ -29,77 +6,83 @@ Author: **Amogh G**
 
 # 1. Problem Statement
 
-Kasparro’s Applied AI Engineer Challenge requires designing a **modular, agent-driven automation system** that generates complete product content using dynamic data.  
+The Kasparro Applied AI Engineer Challenge requires building a **modular, multi-agent content generation system** capable of:
 
-The system must:
+- Parsing product data  
+- Generating categorized user questions using AI  
+- Filling predefined templates  
+- Producing three structured JSON content pages  
+- Running through a **DAG-style (Directed Acyclic Graph) multi-agent workflow**  
+- Supporting **dynamic input** rather than fixed hard-coded data  
 
-- Parse raw product information  
-- Generate categorized user questions using AI  
-- Render multiple content pages from templates  
-- Produce **clean JSON outputs**  
-- Use a **multi-agent DAG workflow** (not a single script)  
-- Accept dynamic input instead of fixed product data  
-
-This project demonstrates **real-world AI engineering**, including orchestration, content automation, and clean modular programming.
+This system demonstrates professional-level AI engineering:  
+- Multi-agent orchestration  
+- Content automation  
+- Template-driven generation  
+- Modular, clean architecture  
+- AI-LangChain style pipeline  
+- Strong documentation  
 
 ---
 
 # 2. Solution Overview
 
-This system consists of:
+This project implements:
 
-### ✔ Four Agents  
+### ✔ Four Autonomous Agents
 1. **Input Parser Agent**  
-2. **Question Generation Agent**  
+2. **Question Generation Agent (Gemini-powered)**  
 3. **Template Engine Agent**  
 4. **Orchestrator Agent**  
 
-### ✔ Logic Blocks  
-Reusable business logic components:
+### ✔ Six Logic Blocks
 - Parsing logic  
-- Question categorization  
-- Template loading  
-- Template filling  
-- Comparison generation logic  
+- Question categorization logic  
+- Comparison logic  
+- Template loader  
+- Template generator  
+- Data normalization  
 
-### ✔ JSON Templates  
-- FAQ template  
-- Product description template  
-- Comparison template  
+### ✔ Three Template Files
+- faq_template.json  
+- product_template.json  
+- comparison_template.json  
 
-### ✔ JSON Output Pages  
-- `faq.json`  
-- `product_page.json`  
-- `comparison_page.json`  
+### ✔ Three Output Files
+- faq.json  
+- product_page.json  
+- comparison_page.json  
 
-### ✔ Dynamic Input Support  
-Modify `data/product.json` → the system updates content automatically.
+### ✔ Dynamic Data Support
+The system reads from:  
+
+
+Changing this file automatically updates all generated content.
 
 ---
 
-# 3. Architecture Overview
-
-## 3.1 High-Level System Architecture (Mermaid Diagram)
+# 3. Architecture Diagram (Mermaid)
 
 ```mermaid
 flowchart TD
 
     A[Input<br>Product Data JSON]:::input
 
-    B[Orchestrator<br>Sequential DAG Flow]:::orchestrator
+    B[Orchestrator Agent<br>DAG Workflow]:::orchestrator
 
     S1[Parsing Logic]:::support
-    S2[Content Logic Blocks<br>(Questions + Comparison)]:::support
+    S2[Content Logic Blocks<br>Questions + Comparison]:::support
     S3[Template Engine<br>Loader + Renderer]:::support
 
-    C1[Data Parser Agent]:::agent
+    C1[Input Parser Agent]:::agent
     C2[Question Generation Agent]:::agent
-    C3[Template Renderer Agent]:::agent
+    C3[Template Engine Agent]:::agent
 
     O1[faq.json]:::output
     O2[product_page.json]:::output
     O3[comparison_page.json]:::output
 
+    %% Flow
     A --> B
     B --> C1
     C1 --> C2
@@ -113,311 +96,272 @@ flowchart TD
     C3 --> O2
     C3 --> O3
 
+    %% STYLES
     classDef input fill:#f5a623,stroke:#333,color:#000;
     classDef orchestrator fill:#7ed321,stroke:#333,color:#000;
     classDef support fill:#4a90e2,stroke:#333,color:#fff;
     classDef agent fill:#9013fe,stroke:#333,color:#fff;
     classDef output fill:#50e3c2,stroke:#333,color:#000;
-````
 
----
 
-# 4. Sequence Diagram (Agent Workflow)
-
-```mermaid
 sequenceDiagram
     autonumber
 
     participant User
     participant Main
     participant Orchestrator
-    participant Parser
-    participant QGen
-    participant TemplateEng
+    participant ParserAgent
+    participant QuestionAgent
+    participant TemplateAgent
     participant Output
 
     User ->> Main: Run main.py
-    Main ->> Orchestrator: load product.json (dynamic input)
+    Main ->> Orchestrator: Load product.json
 
-    Orchestrator ->> Parser: parse product data
-    Parser -->> Orchestrator: structured product data
+    Orchestrator ->> ParserAgent: Parse product data
+    ParserAgent -->> Orchestrator: Clean structured data
 
-    Orchestrator ->> QGen: generate & categorize questions
-    QGen -->> Orchestrator: categorized question blocks
+    Orchestrator ->> QuestionAgent: Generate + categorize questions
+    QuestionAgent -->> Orchestrator: FAQ categories (JSON)
 
-    Orchestrator ->> TemplateEng: fill templates with parsed data
-    TemplateEng -->> Orchestrator: structured JSON pages
+    Orchestrator ->> TemplateAgent: Apply templates
+    TemplateAgent -->> Orchestrator: Rendered JSON pages
 
-    Orchestrator ->> Output: write faq.json
-    Orchestrator ->> Output: write product_page.json
-    Orchestrator ->> Output: write comparison_page.json
+    Orchestrator ->> Output: Save faq.json
+    Orchestrator ->> Output: Save product_page.json
+    Orchestrator ->> Output: Save comparison_page.json
 
-    Output -->> User: JSON files generated successfully
-```
+    Output -->> User: All pages generated successfully
 
----
 
-# 5. Explanation of Every Folder & File
-
-This section documents **every single file**, its purpose, and how it fits into the system.
+# 📂 Folder: agents/ (Core Agents of the Pipeline)
 
 ---
 
-# Root Directory
+## **agents/input_parser_agent.py**
+### **Purpose**
+Parses and normalizes raw product data into a clean internal dictionary.
 
-## `genai_client.py`
-
-Responsible for:
-
-* Loading the Gemini API key from `.env`
-* Creating a shared `genai.Client` instance
-
-This prevents repeated initialization and keeps API logic separate from business logic.
+### **Why this is needed**
+- Ensures consistent field structure  
+- Avoids missing/incorrect keys  
+- Supplies clean, structured data for downstream agents  
 
 ---
 
-## `main.py`
+## **agents/question_generation_agent.py**
+### **Purpose**
+Uses the Google Gemini model to generate **20 natural customer questions**, then categorizes them into:
 
-The entry point.
+- Informational  
+- Usage  
+- Safety  
+- Purchase  
+- Comparison  
 
-Responsibilities:
-
-1. Loads dynamic product data from `data/product.json`
-2. Falls back to test data if file missing
-3. Initializes the Orchestrator Agent
-4. Executes the complete multi-agent pipeline
-5. Stores outputs into `/output`
-
----
-
-## `.env`
-
-Stores sensitive **API key** for Gemini.
-Not committed to GitHub.
+### **Why this is important**
+This directly fulfills the assignment requirement of generating **categorized FAQs** using an AI model.
 
 ---
 
-## `.gitignore`
+## **agents/template_engine_agent.py**
+### **Purpose**
+Applies JSON templates by replacing placeholders with actual product data.
 
-Prevents `.env` and unnecessary files from being pushed to GitHub.
-
----
-
-# Folder: `data/`
-
-## `product.json`
-
-Holds **dynamic product input**.
-
-Users can modify this file to generate new content for any product.
+### **Responsibilities**
+- Loads template JSON  
+- Replaces placeholders such as `{name}`, `{price}`  
+- Inserts dictionary objects like `{questions}` correctly  
+- Produces clean, structured JSON content pages  
 
 ---
 
-# Folder: `agents/`
+## **agents/orchestrator_agent.py**
+### **Purpose**
+Controls the entire **multi-agent DAG pipeline**.
 
-## `__init__.py`
+### **Workflow**
+1. Call **Input Parser Agent**  
+2. Call **Question Generation Agent**  
+3. Create a fictional **Product B**  
+4. Generate a structured **comparison**  
+5. Call **Template Engine Agent**  
+6. Write all JSON outputs to the `/output` folder  
 
-Defines the folder as a Python package.
-
----
-
-## `input_parser_agent.py`
-
-* Reads raw product data
-* Validates and normalizes fields
-* Converts raw JSON into an internal structured dictionary
-
-Ensures downstream agents always receive clean data.
-
----
-
-## `question_generation_agent.py`
-
-Uses Gemini to:
-
-1. Generate 20 diverse user questions
-2. Clean up formatting
-3. Categorize questions into:
-
-   * Informational
-   * Usage
-   * Safety
-   * Purchase
-   * Comparison
-
-This fulfills the FAQ question requirement.
+### **Why it matters**
+This file is the **central brain** of the system and ensures all agents run in the correct order.
 
 ---
 
-## `template_engine_agent.py`
-
-* Loads JSON templates
-* Replaces placeholders (e.g., `{name}`)
-* Inserts dictionary objects (e.g., `{questions}`)
-* Produces structured JSON pages
-
-This enables reusable, scalable content generation.
+# 📂 Folder: logic_blocks/ (Reusable Logic Modules)
 
 ---
 
-## `orchestrator_agent.py`
+## **logic_blocks/parsing.py**
+### **Purpose**
+Defines extraction and normalization rules for:
 
-The **central controller** of the multi-agent pipeline.
+- Product Name  
+- Concentration  
+- Skin Type  
+- Ingredients  
+- Benefits  
+- Usage  
+- Side effects  
+- Price  
 
-DAG execution:
-
-1. Input Parser Agent
-2. Question Generator Agent
-3. Create fictional Product B
-4. Generate comparison data
-5. Apply templates using Template Engine Agent
-6. Write JSON files to `/output`
-
-Ensures proper ordering and data flow.
-
----
-
-# Folder: `logic_blocks/`
-
-## `parsing.py`
-
-Extracts relevant product attributes:
-
-* Name
-* Concentration
-* Skin Type
-* Ingredients
-* Benefits
-* Usage
-* Side Effects
-* Price
+This ensures consistent downstream behavior.
 
 ---
 
-## `question_logic.py`
+## **logic_blocks/question_logic.py**
+### **Purpose**
+Categorizes generated questions using keyword/intent detection:
 
-Categorizes questions based on simple linguistic features.
-
----
-
-## `template_logic.py`
-
-Core template engine:
-
-* Handles simple placeholders
-* Handles dictionary insertion (e.g., `{questions}`)
-* Ensures all JSON templates remain valid
+| Keyword(s)        | Category       |
+|------------------|----------------|
+| what, ingredient | Informational  |
+| use, apply       | Usage          |
+| safe, side effect | Safety         |
+| price, buy       | Purchase       |
+| otherwise        | Comparison     |
 
 ---
 
-## `template_loader.py`
+## **logic_blocks/template_logic.py**
+### **Purpose**
+Implements the **template substitution engine**:
 
-Loads templates from the `/templates` directory.
-
----
-
-## `comparison_logic.py`
-
-Generates structured comparisons between:
-
-* Product A (data input)
-* Product B (fictional — assignment requirement)
-
-Fields:
-
-* Ingredient comparison
-* Benefit comparison
-* Price comparison
+- Replaces `{placeholder}` text  
+- Inserts dictionary objects (`{questions}`)  
+- Ensures JSON remains valid  
 
 ---
 
-# Folder: `templates/`
+## **logic_blocks/template_loader.py**
+### **Purpose**
+Loads JSON templates from the `/templates` folder.
 
-## `faq_template.json`
-
-Defines:
-
-* FAQ page title
-* Placeholder for categorized questions
-
----
-
-## `product_template.json`
-
-Defines product description structure.
+This cleanly separates:
+- Template loading  
+- Template filling  
 
 ---
 
-## `comparison_template.json`
+## **logic_blocks/comparison_logic.py**
+### **Purpose**
+Generates structured comparison between:
 
-Defines structured comparison layout for two products.
+- **Product A** (input product)  
+- **Product B** (fictional competitor)  
 
----
+### **Compares**
+- Ingredients  
+- Benefits  
+- Price  
 
-# Folder: `output/`
-
-Contains all final JSON outputs:
-
-* `faq.json`
-* `product_page.json`
-* `comparison_page.json`
-
-These files are fully machine-readable and follow the template structure.
+Used by the **Template Engine Agent** to fill comparison templates.
 
 ---
 
-# 6. Workflow Execution Steps
-
-1. User runs `python main.py`
-2. System loads product input
-3. Parser Agent normalizes data
-4. Gemini generates categorized questions
-5. Comparison logic compares Product A vs Product B
-6. Template engine fills templates
-7. Orchestrator saves output files
-8. User receives clean JSON pages
+# 📂 Folder: templates/
 
 ---
 
-# 7. Extensibility & Scalability
+## **templates/faq_template.json**
+### **Purpose**
+Defines FAQ page structure:
 
-This architecture supports:
+```json
+{
+  "title": "FAQ: {product}",
+  "questions": "{questions}"
+}
 
-* Adding more content pages
-* Adding new agents
-* Integration with REST APIs
-* Scaling to multiple products
-* Multi-language support
-* Custom templates per brand
 
-This is a **future-proof content automation engine**.
-
----
-
-# 8. Why This Project Should Be Selected
-
-This solution demonstrates:
-
-* Clean separation of responsibilities
-* Modular agent architecture
-* Multi-step DAG orchestration
-* Real-world AI integration (Gemini)
-* Content templating best practices
-* Robust JSON generation
-* Dynamic input support
-* Production-ready project structure
-
-It is engineered to reflect the standards expected of **Applied AI Engineers** at Kasparro.
+## 📂 Folder: templates/
 
 ---
 
-# 9. Conclusion
+### **templates/product_template.json**
+#### **Purpose**
+Defines the product detail page layout:
 
-This project provides a complete, dynamic, and scalable **agentic content generation engine**, fully aligned with Kasparro’s challenge requirements.
-It highlights strong engineering fundamentals, system design skills, and AI integration capability.
+```json
+{
+  "name": "{name}",
+  "concentration": "{concentration}",
+  "skin_type": "{skin_type}",
+  "ingredients": "{ingredients}",
+  "benefits": "{benefits}",
+  "usage": "{usage}",
+  "side_effects": "{side_effects}",
+  "price": "{price}"
+}
 
-```
+## templates/comparison_template.json
 
----
+### Purpose
+Defines structured product comparison layout between Product A and Product B.
+This template is filled by the Template Engine Agent using:
+- Parsed product data
+- Generated comparison logic output
 
+## 📂 Folder: output/
 
+### Generated Files
+This folder contains all final generated machine-readable content pages:
+- faq.json
+- product_page.json
+- comparison_page.json
+
+Each file is created automatically by the Orchestrator Agent during execution.
+
+## 🔄 6. Full Workflow Execution
+
+1. User runs main.py
+2. Product JSON is loaded from /data
+3. Parser Agent cleans and normalizes input data
+4. QGen Agent generates categorized user questions using Gemini
+5. Comparison Logic compares Product A to a fictional Product B
+6. Template Engine Agent fills JSON templates with structured data
+7. Orchestrator Agent writes all JSON output files to /output
+
+The entire pipeline is fully automated and modular.
+
+## ⚙️ 7. Extensibility & Scalability
+
+This architecture is designed for real production scalability.
+
+Supports extension into:
+- New agents (e.g., review generator, SEO content agent)
+- More templates (landing pages, ads, descriptions, blogs)
+- Additional output formats (HTML, PDF, Markdown)
+- REST API version using FastAPI or Flask
+- Batch processing of multiple products
+- Database integration (MongoDB, PostgreSQL)
+- Brand-specific and domain-specific content generation
+
+Built as a production-friendly, modular pipeline.
+
+## ⭐ 8. Why This Solution Should Be Selected
+
+This project demonstrates:
+- ✔ Strong multi-agent system design
+- ✔ Clean content pipeline engineering
+- ✔ Template-driven structured output generation
+- ✔ Modular, readable, scalable architecture
+- ✔ Reusable logic blocks and template system
+- ✔ Dynamic product data handling
+- ✔ Professional diagrams and documentation
+
+This aligns perfectly with the expectations for an **Applied AI Engineer at Kasparro**.
+
+## 🏁 9. Conclusion
+
+This system is a complete end-to-end agentic content generation engine:
+- Automated
+- Scalable
+- Modular
+- AI-powered
+- Professionally engineered

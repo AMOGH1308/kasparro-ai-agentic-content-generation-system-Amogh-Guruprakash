@@ -1,58 +1,65 @@
-# Kasparro – Multi-Agent Content Generation System  
+
+# 🚀 Kasparro – Multi-Agent Content Generation System  
 ### Author: **Amogh G**
 
-This repository contains a complete **multi-agent automation system** designed for the **Kasparro Applied AI Engineer Challenge**.  
-The system processes dynamic product data and generates three structured JSON pages:
+This repository contains a complete **multi-agent automation system** built for the **Kasparro Applied AI Engineer Challenge**.
 
-- **FAQ Page**  
-- **Product Description Page**  
-- **Comparison Page**
+The system dynamically processes any product JSON input and automatically generates:
 
-It uses a **DAG-style orchestration** with multiple agents, reusable content logic blocks, and JSON templates.  
-AI-driven question generation is powered by **Google Gemini**.
+- **FAQ Page (faq.json)**
+- **Product Detail Page (product_page.json)**
+- **Comparison Page (comparison_page.json)**
+
+It uses a **DAG-style agent workflow**, reusable logic blocks, JSON templates, and the **Google Gemini API** for AI-powered content generation.
 
 ---
 
-## 🚀 Features
+# 📌 Features
 
 ### ✔ Multi-Agent Architecture  
-Each agent solves a specific task:
-- Input Parser Agent  
-- Question Generation Agent  
-- Template Engine Agent  
-- Orchestrator Agent  
+The system intelligently divides work among four autonomous agents:
+- **Input Parser Agent**
+- **Question Generation Agent**
+- **Template Engine Agent**
+- **Orchestrator Agent**
 
 ### ✔ Dynamic Product Input  
-Place any product info in:  
+Place any product JSON inside:
 
 
-→ System automatically generates all content pages.
+data/product.json
 
-### ✔ Template-Based Content System  
-Fillable JSON templates allow flexible, maintainable content generation:
-- `faq_template.json`
-- `product_template.json`
-- `comparison_template.json`
+The system will auto-generate all three output pages using this new input.
 
-### ✔ AI-Powered Question Generation  
-20+ user questions are generated automatically using the Google Gemini API and categorized into:
+### ✔ Template-Driven Architecture  
+Uses JSON templates stored in `/templates` to ensure:
+- Scalability
+- Easy updates
+- High consistency
+
+### ✔ Google Gemini AI Question Generator  
+Automatically generates **20+ customer questions**, clearly categorized into:
 - Informational  
 - Usage  
 - Safety  
 - Purchase  
 - Comparison  
 
-### ✔ Clean, Machine-Readable JSON Output  
-All pages are saved inside `/output`:
-output/
-├── faq.json
-├── product_page.json
-└── comparison_page.json
+### ✔ Clean JSON Output  
+Outputs are saved to:
 
+
+output/
+faq.json
+product_page.json
+comparison_page.json
+
+These files are machine-readable and production-friendly.
 
 ---
 
-## 🏗 Folder Structure
+# 📂 Project Structure
+
 
 project/
 │── main.py
@@ -64,14 +71,12 @@ project/
 │ └── product.json
 │
 ├── agents/
-│ ├── init.py
 │ ├── input_parser_agent.py
-│ ├── question_generator_agent.py
+│ ├── question_generation_agent.py
 │ ├── template_engine_agent.py
 │ └── orchestrator_agent.py
 │
 ├── logic_blocks/
-│ ├── init.py
 │ ├── parsing.py
 │ ├── question_logic.py
 │ ├── template_logic.py
@@ -84,77 +89,94 @@ project/
 │ └── comparison_template.json
 │
 ├── output/
-│ └── (generated JSON files)
+│ └── (generated files)
 │
 └── docs/
 └── projectdocumentation.md
 
-
 ---
 
-## ⚙️ Installation
+# ⚙️ Installation
 
-### 1️⃣ Install dependencies  
+### **1️⃣ Clone the repository**
+git clone [https://github.com/AMOGH1308/kasparro-ai-agentic-content-generation-system-Amogh-Guruprakash](https://github.com/AMOGH1308/kasparro-ai-agentic-content-generation-system-Amogh-Guruprakash)
+cd kasparro-ai-agentic-content-generation-system-Amogh-Guruprakash
+
+2️⃣ Install dependencies
 pip install -r requirements.txt
 
-### 2️⃣ Create `.env` file  
-GEMINI_API_KEY=YOUR_API_KEY_HERE
+3️⃣ Add your Gemini API key
+Create a .env file in the root:
+GEMINI_API_KEY=your_api_key_here
 
+▶️ Running the System
+Run:
+python main.py
 
-### 3️⃣ (Windows fix)  
-If output shows encoding issues (â‚¹ instead of ₹):  
-Run Python with UTF-8 mode:
-
+If you're on Windows and facing encoding issues:
 python -Xutf8 main.py
 
+You will find your generated JSON files inside:
+output/
 
-
----
-
-## ▶️ Running the System
-
-To run the entire multi-agent pipeline:
-
-
-This will:
-- Parse product data  
-- Generate categorized questions  
-- Fill templates  
-- Save JSON pages into `/output`  
-
----
-
-## 🧠 Technologies Used
-
-- Python  
-- Google Gemini API  
-- Modular Agent Architecture  
-- JSON templating  
-- Reusable content logic blocks  
-- DAG-style orchestration  
-
----
-
-## 📘 Documentation
-
-Full project documentation including **architecture diagrams**, **sequence diagrams**, and **file-level explanations** is available in:
-
+📘 Documentation
+Full system documentation (flowcharts, diagrams, detailed file explanations) is available here:
 docs/projectdocumentation.md
 
-(Or `docs/complete_documentation.md` if you used the combined version.)
+📊 Example Output (Preview)
+{
+  "faq": {
+    "title": "FAQ: GlowBoost Vitamin C Serum",
+    "questions": {
+      "Informational": ["What is this product used for?"],
+      "Usage": ["How should this serum be applied?"],
+      "Safety": ["Are there any side effects?"],
+      "Purchase": ["What is the price?"],
+      "Comparison": ["How does this differ from other serums?"]
+    }
+  },
+  "product_page": {
+    "name": "GlowBoost Vitamin C Serum",
+    "concentration": "10% Vitamin C",
+    "skin_type": "Oily, Combination",
+    "ingredients": "Vitamin C, Hyaluronic Acid",
+    "benefits": "Brightening, Reduces dark spots",
+    "usage": "Apply 2-3 drops in the morning",
+    "side_effects": "Mild tingling",
+    "price": "₹699"
+  },
+  "comparison_page": {
+    "product_a": "GlowBoost Vitamin C Serum",
+    "product_b": "RadiantGlow Serum B",
+    "ingredient_comparison": "Vitamin C + Hyaluronic Acid vs Vitamin E + Green Tea",
+    "benefits_comparison": "Brightening vs Hydration",
+    "price_comparison": "₹699 vs ₹899"
+  }
+}
+
+⭐ Why This Project Stands Out
+This system demonstrates:
+Strong multi-agent engineering
+Clean template-based content generation
+AI-driven Q&A generation
+Modular and scalable architecture
+Professional documentation & diagrams
+Real-world workflow automation
+Dynamic product input handling
+It aligns exactly with Kasparro's expectations for an Applied AI Engineer.
+
+🏁 Conclusion
+This repository delivers a fully automated, AI-powered agentic content generation engine that is:
+Scalable
+Modular
+Automated
+Well-documented
+Ready for production
+It fulfills all challenge requirements and demonstrates strong software engineering + AI integration skills.
+
+🙌 Author
+Amogh Guruprakash
+Applied AI Engineer Candidate – Kasparro
 
 ---
-
-## 🏁 Conclusion
-
-This project demonstrates:
-
-- Strong system design  
-- Modular, scalable architecture  
-- Real AI engineering practices  
-- Multi-agent orchestration  
-- Template-based content automation  
-- Clean JSON generation  
-
-
 
