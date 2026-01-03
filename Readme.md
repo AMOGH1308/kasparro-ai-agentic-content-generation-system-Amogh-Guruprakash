@@ -6,7 +6,13 @@
 
 ## 🚀 Quick Start
 
-1. **Configure Virtual Environment**:
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/AMOGH1308/kasparro-ai-agentic-content-generation-system-Amogh-Guruprakash.git
+   cd kasparro-ai-agentic-content-generation-system-Amogh-Guruprakash
+   ```
+
+2. **Configure Virtual Environment**:
 - **Isolation**: Prevents dependency conflicts.
 - **Consistency**: Ensures a reproducible environment.
    ```bash
@@ -20,17 +26,17 @@
    source venv/bin/activate
    ```
 
-2. **Install Dependencies**:
+3. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Configure API Key**:
+4. **Configure API Key**:
    - Open the `.env` file in the root directory.
    - Replace `enter_api_key_over_here` with your valid Google Gemini API Key.
    - *Note: If no key is provided, the system will automatically fall back to a sophisticated mock generation mode.*
 
-4. **Run the System**:
+5. **Run the System**:
    ```bash
    python main.py
    ```
