@@ -169,6 +169,153 @@ classDiagram
 
 ---
 
+## 📊 Data Specification: Input & Output
+
+### 1. System Input (`data/product.json`)
+- **Format**: Flat JSON object containing raw product attributes.
+- **Key Fields**: Name, Concentration, Skin Type, Ingredients, Benefits, Usage, and Price.
+- **Validation**: Strict enforcement of required keys by the `DataValidationAgent`.
+
+**Example Input:**
+```json
+{
+    "Product Name": "GlowBoost Vitamin C Serum",
+    "Concentration": "10% Vitamin C",
+    "Skin Type": "Oily, Combination",
+    "Key Ingredients": "Vitamin C, Hyaluronic Acid",
+    "Benefits": "Brightening, Fades dark spots",
+    "How to Use": "Apply 2–3 drops in the morning before sunscreen",
+    "Side Effects": "Mild tingling for sensitive skin",
+    "Price": "₹699"
+}
+```
+
+### 2. System Output (`output/*.json`)
+- **Multiple Views**: Generates discrete files for FAQ, Product Detail, and Comparison summaries.
+- **Schema**: Machine-readable JSON structured for frontend consumption.
+- **Categorization**: Automated tagging of content into logical blocks (e.g., Usage vs Safety).
+
+#### A. FAQ Output (`faq_page.json`)
+```json
+{
+    "page_type": "FAQ",
+    "title": "FAQ: GlowBoost Vitamin C Serum",
+    "questions": {
+        "Informational": [
+            {
+                "q": "How does GlowBoost Vitamin C Serum support skin barrier health?",
+                "a": "It uses balanced actives to protect the lipid layer."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum suitable for sensitive skin?",
+                "a": "Yes, it is dermatologically tested for all skin types."
+            },
+            {
+                "q": "What is the source of the Vitamin C, Hyaluronic Acid in GlowBoost Vitamin C Serum?",
+                "a": "Our ingredients are ethically sourced and medical-grade."
+            }
+        ],
+        "Usage": [
+            {
+                "q": "Can I use GlowBoost Vitamin C Serum with Retinol?",
+                "a": "Yes, but we recommend alternating nights to avoid sensitivity."
+            },
+            {
+                "q": "How many drops of GlowBoost Vitamin C Serum should I apply?",
+                "a": "2-3 drops are sufficient for the entire face."
+            },
+            {
+                "q": "Can I apply makeup over GlowBoost Vitamin C Serum?",
+                "a": "Yes, wait 60 seconds for full absorption first."
+            }
+        ],
+        "Safety": [
+            {
+                "q": "Is GlowBoost Vitamin C Serum safe for pregnancy?",
+                "a": "Consult your doctor; ingredients are generally safe but medical advice is best."
+            },
+            {
+                "q": "Will GlowBoost Vitamin C Serum cause purging?",
+                "a": "Minor purging can occur as cell turnover increases, usually lasting 1 week."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum non-comedogenic?",
+                "a": "Yes, it is formulated to not clog pores."
+            }
+        ],
+        "Purchase": [
+            {
+                "q": "Is the packaging recyclable?",
+                "a": "Yes, we use 100% recyclable glass and minimal plastic."
+            },
+            {
+                "q": "Where is GlowBoost Vitamin C Serum manufactured?",
+                "a": "It is produced in our ISO-certified cleanroom facility."
+            },
+            {
+                "q": "Do you offer a subscription discount?",
+                "a": "Yes, subscribers save 15% on every order."
+            }
+        ],
+        "Comparison": [
+            {
+                "q": "How is GlowBoost Vitamin C Serum better than Competitor B?",
+                "a": "It features a higher concentration of stabilized actives."
+            },
+            {
+                "q": "Does GlowBoost Vitamin C Serum replace my moisturizer?",
+                "a": "It is a treatment serum; we recommend following with moisturizer."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum more effective than drug-store alternatives?",
+                "a": "Yes, due to its medical-grade purity and delivery system."
+            }
+        ]
+    }
+}
+```
+
+#### B. Product Detail Output (`product_page.json`)
+```json
+{
+    "page_type": "Product_Detail",
+    "name": "GlowBoost Vitamin C Serum",
+    "concentration": "10% Vitamin C",
+    "skin_type": "Oily, Combination",
+    "key_ingredients": "Vitamin C, Hyaluronic Acid",
+    "benefits": "Brightening, Fades dark spots",
+    "how_to_use": "Apply 2–3 drops in the morning before sunscreen",
+    "side_effects": "Mild tingling for sensitive skin",
+    "price": "₹699"
+}
+```
+
+#### C. Product Comparison Output (`comparison_page.json`)
+```json
+{
+    "page_type": "Product_Comparison",
+    "product_a": {
+        "name": "GlowBoost Vitamin C Serum",
+        "ingredients": "Vitamin C, Hyaluronic Acid",
+        "benefits": "Brightening, Fades dark spots",
+        "price": "₹699"
+    },
+    "product_b": {
+        "name": "EliteGlow Serum B",
+        "ingredients": "Glycerin, Vitamin E, Synthetic Actives",
+        "benefits": "Deep hydration and basic barrier protection",
+        "price": "₹899"
+    },
+    "comparison_summary": {
+        "ingredients_comparison": "GlowBoost Vitamin C Serum vs EliteGlow Serum B",
+        "benefits_comparison": "High potency vs Deep hydration and basic barrier protection",
+        "price_comparison": "₹699 vs ₹899"
+    }
+}
+```
+
+---
+
 ## 🎯 Evaluation Criteria: Compliance Matrix
 
 ### 1. Agentic System Design
@@ -191,4 +338,9 @@ classDiagram
 - **Schema Validation**: Uses Pydantic for 100% runtime type-safety and contract enforcement.
 - **JSON Standard**: All system outputs are machine-readable, schema-valid JSON files.
 - **Traceability**: `audit_trail.json` provides a machine-readable history of the entire generation lifecycle.
+
+---
+
+## 🏁 Conclusion
+The Kasparro AI Agentic System demonstrates a significant shift from traditional script-based automation to **autonomous engineering**. By integrating an asynchronous message-bus, rigid Pydantic contracts, and a self-correcting "Editor-in-the-Loop" critique cycle, the system achieves a level of robustness and content quality far exceeding standard linear pipelines. It provides a scalable foundation for structured content generation while maintaining full transparency through its comprehensive audit trail.
 
