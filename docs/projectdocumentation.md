@@ -47,7 +47,7 @@ graph TD
     Input --> Val[Data Validation Agent]
     Val --> Parser[Parser Agent]
     
-    subgraph "The Intelligence Loop"
+    subgraph "Intelligence Loop"
         Parser --> QA[Question Agent]
         QA <--> Editor[Editor Agent / Critique]
     end
@@ -55,7 +55,7 @@ graph TD
     Editor --> Tpl[Template Engine Agent]
     Tpl --> Out[/Final JSON Output/]
 
-    subgraph "Observability Layer"
+    subgraph "Observability"
         Audit((Audit Agent))
     end
     
@@ -141,23 +141,24 @@ classDiagram
 
 #### C. Comparison Logic (Data Mapping)
 - **Purpose**: Illustrates how the Template Engine synthesizes high-fidelity comparisons by contrasting Product A and Product B attributes.
+- **Data Source**: Powered by the `QuestionOutput` schema.
 
 ```mermaid
 graph TD
-    subgraph "Data Sources (QuestionOutput)"
-        A[Product A Data]
-        B[Product B Data]
+    SRC_A[Product A Data]
+    SRC_B[Product B Data]
+    
+    subgraph "Hydration Engine"
+        Mapper{Logic Mapper}
+        Template[comparison.json]
     end
 
-    subgraph "Template Hydration"
-        Map{Logic Mapper}
-        Tpl[comparison.json]
-    end
+    Final[/comparison_page.json/]
 
-    A -->|Map Attributes| Map
-    B -->|Map Attributes| Map
-    Map -->|Inject Data| Tpl
-    Tpl -->|Generate| Final[/comparison_page.json/]
+    SRC_A -->|Map| Mapper
+    SRC_B -->|Map| Mapper
+    Mapper -->|Inject| Template
+    Template -->|Generate| Final
 ```
 
 ### 4. Detailed Agent Responsibilities
