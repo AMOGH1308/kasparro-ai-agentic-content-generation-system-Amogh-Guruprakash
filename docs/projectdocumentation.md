@@ -171,23 +171,23 @@ classDiagram
 
 ## 🎯 Evaluation Criteria: Compliance Matrix
 
-### 1. Agentic System Design (45%)
+### 1. Agentic System Design
 - **Modularity**: Fully decoupled agents with distinct `think()` and `act()` cycles.
 - **Extensibility**: Message-bus allows new agents to be added without modifying existing code.
 - **Flow Control**: Sophisticated state management with autonomous feedback loops (Editor-to-Question).
 - **Responsibility**: Zero overlap between agents; each operates on a strictly defined data tier.
 
-### 2. Types & Quality of Agents (25%)
+### 2. Types & Quality of Agents
 - **Intelligence**: `QuestionAgent` manages multi-model failover and complex contextual prompts.
 - **Autonomy**: `EditorAgent` performs independent verification of content quality.
 - **System Integrity**: `DataValidation` and `Parser` agents act as early-fail gatekeepers.
 
-### 3. Content System Engineering (20%)
+### 3. Content System Engineering
 - **Composability**: Logic blocks (FAQs, Benefits) are treated as discrete, reusable JSON entities.
 - **Templating**: Features a custom declarative engine for field mapping and hydration.
 - **Quality Control**: Automated critique cycles ensure consistent output depth.
 
-### 4. Data & Output Structure (10%)
+### 4. Data & Output Structure
 - **Schema Validation**: Uses Pydantic for 100% runtime type-safety and contract enforcement.
 - **JSON Standard**: All system outputs are machine-readable, schema-valid JSON files.
 - **Traceability**: `audit_trail.json` provides a machine-readable history of the entire generation lifecycle.
