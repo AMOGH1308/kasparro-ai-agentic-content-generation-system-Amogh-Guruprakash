@@ -1,0 +1,11 @@
+{
+  "page_type": "FAQ",
+  "title": "FAQ: {product_name}",
+  "questions": {
+    "Informational": "{informational_questions}",
+    "Usage": "{usage_questions}",
+    "Safety": "{safety_questions}",
+    "Purchase": "{purchase_questions}",
+    "Comparison": "{comparison_questions}"
+  }
+}

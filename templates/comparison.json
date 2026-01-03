@@ -1,0 +1,20 @@
+{
+  "page_type": "Product_Comparison",
+  "product_a": {
+    "name": "{product_a_name}",
+    "ingredients": "{product_a_ingredients}",
+    "benefits": "{product_a_benefits}",
+    "price": "{product_a_price}"
+  },
+  "product_b": {
+    "name": "{product_b_name}",
+    "ingredients": "{product_b_ingredients}",
+    "benefits": "{product_b_benefits}",
+    "price": "{product_b_price}"
+  },
+  "comparison_summary": {
+    "ingredients_comparison": "{ingredients_comparison}",
+    "benefits_comparison": "{benefits_comparison}",
+    "price_comparison": "{price_comparison}"
+  }
+}

@@ -1,0 +1,51 @@
+[
+    {
+        "timestamp": "2026-01-03T13:42:29.572288",
+        "sender": "SYSTEM",
+        "receiver": "InputAgent",
+        "payload_type": "dict",
+        "payload": "{'Product Name': 'GlowBoost Vitamin C Serum', 'Concentration': '10% Vitamin C', 'Skin Type': 'Oily, Combination', 'Key Ingredients': 'Vitamin C, Hyaluronic Acid', 'Benefits': 'Brightening, Fades dark spots', 'How to Use': 'Apply 2\u20133 drops in the morning before sunscreen', 'Side Effects': 'Mild tingling for sensitive skin', 'Price': '\u20b9699'}"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.573831",
+        "sender": "InputAgent",
+        "receiver": "DataValidationAgent",
+        "payload_type": "dict",
+        "payload": "{'Product Name': 'GlowBoost Vitamin C Serum', 'Concentration': '10% Vitamin C', 'Skin Type': 'Oily, Combination', 'Key Ingredients': 'Vitamin C, Hyaluronic Acid', 'Benefits': 'Brightening, Fades dark spots', 'How to Use': 'Apply 2\u20133 drops in the morning before sunscreen', 'Side Effects': 'Mild tingling for sensitive skin', 'Price': '\u20b9699'}"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.574830",
+        "sender": "DataValidationAgent",
+        "receiver": "ParserAgent",
+        "payload_type": "dict",
+        "payload": "{'Product Name': 'GlowBoost Vitamin C Serum', 'Concentration': '10% Vitamin C', 'Skin Type': 'Oily, Combination', 'Key Ingredients': 'Vitamin C, Hyaluronic Acid', 'Benefits': 'Brightening, Fades dark spots', 'How to Use': 'Apply 2\u20133 drops in the morning before sunscreen', 'Side Effects': 'Mild tingling for sensitive skin', 'Price': '\u20b9699'}"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.575854",
+        "sender": "ParserAgent",
+        "receiver": "QuestionAgent",
+        "payload_type": "ProductData",
+        "payload": "name='GlowBoost Vitamin C Serum' concentration='10% Vitamin C' skin_type='Oily, Combination' ingredients='Vitamin C, Hyaluronic Acid' benefits='Brightening, Fades dark spots' usage='Apply 2\u20133 drops in the morning before sunscreen' side_effects='Mild tingling for sensitive skin' price='\u20b9699'"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.577940",
+        "sender": "QuestionAgent",
+        "receiver": "EditorAgent",
+        "payload_type": "QuestionOutput",
+        "payload": "product=ProductData(name='GlowBoost Vitamin C Serum', concentration='10% Vitamin C', skin_type='Oily, Combination', ingredients='Vitamin C, Hyaluronic Acid', benefits='Brightening, Fades dark spots', usage='Apply 2\u20133 drops in the morning before sunscreen', side_effects='Mild tingling for sensitive skin', price='\u20b9699') product_b=ProductBData(name='EliteGlow Serum B', ingredients='Glycerin, Vitamin E, Synthetic Actives', benefits='Deep hydration and basic barrier protection', price='\u20b9899') questio"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.579835",
+        "sender": "EditorAgent",
+        "receiver": "TemplateAgent",
+        "payload_type": "QuestionOutput",
+        "payload": "product=ProductData(name='GlowBoost Vitamin C Serum', concentration='10% Vitamin C', skin_type='Oily, Combination', ingredients='Vitamin C, Hyaluronic Acid', benefits='Brightening, Fades dark spots', usage='Apply 2\u20133 drops in the morning before sunscreen', side_effects='Mild tingling for sensitive skin', price='\u20b9699') product_b=ProductBData(name='EliteGlow Serum B', ingredients='Glycerin, Vitamin E, Synthetic Actives', benefits='Deep hydration and basic barrier protection', price='\u20b9899') questio"
+    },
+    {
+        "timestamp": "2026-01-03T13:42:29.581830",
+        "sender": "TemplateAgent",
+        "receiver": "OutputAgent",
+        "payload_type": "dict",
+        "payload": "{'faq_page': {'page_type': 'FAQ', 'title': 'FAQ: GlowBoost Vitamin C Serum', 'questions': {'Informational': [{'q': 'How does GlowBoost Vitamin C Serum support skin barrier health?', 'a': 'It uses balanced actives to protect the lipid layer.'}, {'q': 'Is GlowBoost Vitamin C Serum suitable for sensitive skin?', 'a': 'Yes, it is dermatologically tested for all skin types.'}, {'q': 'What is the source of the Vitamin C, Hyaluronic Acid in GlowBoost Vitamin C Serum?', 'a': 'Our ingredients are ethical"
+    }
+]

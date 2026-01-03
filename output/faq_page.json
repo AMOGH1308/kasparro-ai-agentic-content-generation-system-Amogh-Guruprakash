@@ -1,0 +1,76 @@
+{
+    "page_type": "FAQ",
+    "title": "FAQ: GlowBoost Vitamin C Serum",
+    "questions": {
+        "Informational": [
+            {
+                "q": "How does GlowBoost Vitamin C Serum support skin barrier health?",
+                "a": "It uses balanced actives to protect the lipid layer."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum suitable for sensitive skin?",
+                "a": "Yes, it is dermatologically tested for all skin types."
+            },
+            {
+                "q": "What is the source of the Vitamin C, Hyaluronic Acid in GlowBoost Vitamin C Serum?",
+                "a": "Our ingredients are ethically sourced and medical-grade."
+            }
+        ],
+        "Usage": [
+            {
+                "q": "Can I use GlowBoost Vitamin C Serum with Retinol?",
+                "a": "Yes, but we recommend alternating nights to avoid sensitivity."
+            },
+            {
+                "q": "How many drops of GlowBoost Vitamin C Serum should I apply?",
+                "a": "2-3 drops are sufficient for the entire face."
+            },
+            {
+                "q": "Can I apply makeup over GlowBoost Vitamin C Serum?",
+                "a": "Yes, wait 60 seconds for full absorption first."
+            }
+        ],
+        "Safety": [
+            {
+                "q": "Is GlowBoost Vitamin C Serum safe for pregnancy?",
+                "a": "Consult your doctor; ingredients are generally safe but medical advice is best."
+            },
+            {
+                "q": "Will GlowBoost Vitamin C Serum cause purging?",
+                "a": "Minor purging can occur as cell turnover increases, usually lasting 1 week."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum non-comedogenic?",
+                "a": "Yes, it is formulated to not clog pores."
+            }
+        ],
+        "Purchase": [
+            {
+                "q": "Is the packaging recyclable?",
+                "a": "Yes, we use 100% recyclable glass and minimal plastic."
+            },
+            {
+                "q": "Where is GlowBoost Vitamin C Serum manufactured?",
+                "a": "It is produced in our ISO-certified cleanroom facility."
+            },
+            {
+                "q": "Do you offer a subscription discount?",
+                "a": "Yes, subscribers save 15% on every order."
+            }
+        ],
+        "Comparison": [
+            {
+                "q": "How is GlowBoost Vitamin C Serum better than Competitor B?",
+                "a": "It features a higher concentration of stabilized actives."
+            },
+            {
+                "q": "Does GlowBoost Vitamin C Serum replace my moisturizer?",
+                "a": "It is a treatment serum; we recommend following with moisturizer."
+            },
+            {
+                "q": "Is GlowBoost Vitamin C Serum more effective than drug-store alternatives?",
+                "a": "Yes, due to its medical-grade purity and delivery system."
+            }
+        ]
+    }
+}

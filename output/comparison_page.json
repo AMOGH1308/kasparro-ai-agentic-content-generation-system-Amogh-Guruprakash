@@ -1,0 +1,20 @@
+{
+    "page_type": "Product_Comparison",
+    "product_a": {
+        "name": "GlowBoost Vitamin C Serum",
+        "ingredients": "Vitamin C, Hyaluronic Acid",
+        "benefits": "Brightening, Fades dark spots",
+        "price": "₹699"
+    },
+    "product_b": {
+        "name": "EliteGlow Serum B",
+        "ingredients": "Glycerin, Vitamin E, Synthetic Actives",
+        "benefits": "Deep hydration and basic barrier protection",
+        "price": "₹899"
+    },
+    "comparison_summary": {
+        "ingredients_comparison": "GlowBoost Vitamin C Serum vs EliteGlow Serum B",
+        "benefits_comparison": "High potency vs Deep hydration and basic barrier protection",
+        "price_comparison": "₹699 vs ₹899"
+    }
+}
