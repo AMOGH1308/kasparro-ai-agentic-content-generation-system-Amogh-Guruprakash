@@ -143,21 +143,21 @@ classDiagram
 - **Purpose**: Illustrates how the Template Engine synthesizes high-fidelity comparisons by contrasting Product A and Product B attributes.
 
 ```mermaid
-graph LR
+graph TD
     subgraph "Data Sources (QuestionOutput)"
         A[Product A Data]
         B[Product B Data]
     end
 
-    subgraph "Template Hydrator"
+    subgraph "Template Hydration"
         Map{Logic Mapper}
         Tpl[comparison.json]
     end
 
-    A -- "Name/Ingr/Price" --> Map
-    B -- "Name/Ingr/Price" --> Map
-    Map -- "Hydrate Placeholders" --> Tpl
-    Tpl -- "Output" --> Final[/comparison_page.json/]
+    A -->|Map Attributes| Map
+    B -->|Map Attributes| Map
+    Map -->|Inject Data| Tpl
+    Tpl -->|Generate| Final[/comparison_page.json/]
 ```
 
 ### 4. Detailed Agent Responsibilities
