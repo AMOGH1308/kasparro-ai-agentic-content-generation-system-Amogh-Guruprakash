@@ -111,7 +111,13 @@ classDiagram
         +String name
         +String concentration
         +String skin_type
-        +List ingredients
+        +String ingredients
+        +String benefits
+        +String price
+    }
+    class ProductBData {
+        +String name
+        +String ingredients
         +String benefits
         +String price
     }
@@ -129,7 +135,29 @@ classDiagram
         +List Comparison
     }
     QuestionOutput *-- ProductData
+    QuestionOutput *-- ProductBData
     QuestionOutput *-- FAQData
+```
+
+#### C. Comparison Logic (Data Mapping)
+- **Purpose**: Illustrates how the Template Engine synthesizes high-fidelity comparisons by contrasting Product A and Product B attributes.
+
+```mermaid
+graph LR
+    subgraph "Data Sources (QuestionOutput)"
+        A[Product A Data]
+        B[Product B Data]
+    end
+
+    subgraph "Template Hydrator"
+        Map{Logic Mapper}
+        Tpl[comparison.json]
+    end
+
+    A -- "Name/Ingr/Price" --> Map
+    B -- "Name/Ingr/Price" --> Map
+    Map -- "Hydrate Placeholders" --> Tpl
+    Tpl -- "Output" --> Final[/comparison_page.json/]
 ```
 
 ### 4. Detailed Agent Responsibilities
