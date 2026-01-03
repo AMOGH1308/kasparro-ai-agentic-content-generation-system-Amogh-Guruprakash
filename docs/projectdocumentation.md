@@ -1,4 +1,4 @@
-# Kasparro AI: Agentic Content Generation System
+# Multi-Agent Content Generation System
 
 ## Problem Statement
 Standard e-commerce content generation often suffers from "Hallucination Pipelines"—linear scripts that push raw AI output directly to production without validation or contextual depth. These systems lack the autonomy to self-correct, fail to provide an audit trail for debugging agent interactions, and are brittle to changes in input data structures.
